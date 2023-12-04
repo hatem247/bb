@@ -1,0 +1,39 @@
+﻿<Page x:Class="AirportMS.Ticketpage"
+      xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+      xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+      xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+      xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+      xmlns:local="clr-namespace:AirportMS"
+      mc:Ignorable="d" 
+      d:DesignHeight="450" d:DesignWidth="600"
+      Title="Ticketpage">
+
+    <Grid>
+        <Grid.Background>
+            <ImageBrush ImageSource="AirportAdminBK.png"/>
+        </Grid.Background>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="100"/>
+            <ColumnDefinition/>
+        </Grid.ColumnDefinitions>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="100"/>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition/>
+        </Grid.RowDefinitions>
+        <ComboBox Name="ClassCombox" BorderBrush="#E52B50" Grid.Column="1" Grid.Row="2" Margin="10,5,360,5">
+            <ComboBoxItem>A</ComboBoxItem>
+            <ComboBoxItem>B</ComboBoxItem>
+            <ComboBoxItem>C</ComboBoxItem>
+        </ComboBox>
+        <Label Grid.Row="0" Grid.Column="1" Foreground="#E52B50" Margin="125,0,0,0" FontSize="40" FontWeight="Bold" FontFamily="Trebuchet MS">Airport</Label>
+        <Label Grid.Row="0" Grid.Column="1" Foreground="#E52B50" FontSize="28" FontWeight="Bold" Margin="130,50,0,0" FontFamily="Trebuchet MS">Welcome</Label>
+        <Label Grid.Row="1" Grid.Column="0" Foreground="#E52B50">Search by Name:</Label>
+        <Label Grid.Row="2" Grid.Column="0" Foreground="#E52B50">Search by Class:</Label>
+        <Button Name="Searchbtn" BorderBrush="#E52B50" Height="25" Margin="5,10,20,10" Grid.Row="3" VerticalAlignment="Top" Grid.Column="0" Foreground="#E52B50" Click="Searchbtn_Click">Search</Button>
+        <Button Name="ToreserveTicketButton" BorderBrush="#E52B50" Height="25" Margin="5,30,20,200" Grid.Row="3" Grid.Column="0" Foreground="#E52B50" Click="ToreserveTicketButton_Click">Buy Ticket</Button>
+        <TextBox Name="SearchNametxtbox" BorderBrush="#E52B50" Grid.Row="1" Grid.Column="1" Margin="0,3,200,3" Foreground="#E52B50" Background="Transparent"/>
+        <DataGrid Name="Dataview" Grid.Column="1" Grid.Row="3" Margin="10"></DataGrid>
+    </Grid>
+</Page>

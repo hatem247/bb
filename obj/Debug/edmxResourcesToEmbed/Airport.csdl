@@ -1,0 +1,121 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Schema Namespace="AirportDBModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+  <EntityType Name="Airplane">
+    <Key>
+      <PropertyRef Name="Airplane_Id" />
+    </Key>
+    <Property Name="Airplane_Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="Airplane_Name" Type="String" MaxLength="30" FixedLength="false" Unicode="false" />
+    <Property Name="Airplane_Capacity" Type="Int32" />
+    <Property Name="Airplane_Status" Type="String" MaxLength="30" FixedLength="false" Unicode="false" />
+    <NavigationProperty Name="Flights" Relationship="Self.FK__Flight__Airplane__3F466844" FromRole="Airplane" ToRole="Flight" />
+  </EntityType>
+  <EntityType Name="Flight">
+    <Key>
+      <PropertyRef Name="Flight_Number" />
+    </Key>
+    <Property Name="Flight_Number" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="Flight_Status" Type="String" MaxLength="30" FixedLength="false" Unicode="false" />
+    <Property Name="Flight_Departure_Time" Type="Time" Precision="7" />
+    <Property Name="Flight_Arrival_Time" Type="Time" Precision="7" />
+    <Property Name="Passenger_Id" Type="Int32" />
+    <Property Name="Airplane_Id" Type="Int32" />
+    <NavigationProperty Name="Airplane" Relationship="Self.FK__Flight__Airplane__3F466844" FromRole="Flight" ToRole="Airplane" />
+    <NavigationProperty Name="Passenger" Relationship="Self.FK__Flight__Passenge__3E52440B" FromRole="Flight" ToRole="Passenger" />
+  </EntityType>
+  <EntityType Name="Passenger">
+    <Key>
+      <PropertyRef Name="Passenger_Id" />
+    </Key>
+    <Property Name="Passenger_Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="Passenger_Name" Type="String" MaxLength="30" FixedLength="false" Unicode="false" />
+    <Property Name="Passenger_Age" Type="Int32" />
+    <Property Name="Passenger_Passport" Type="String" MaxLength="30" FixedLength="false" Unicode="false" />
+    <Property Name="Passenger_Gender" Type="String" MaxLength="30" FixedLength="false" Unicode="false" />
+    <Property Name="Passenger_Phone_Number" Type="Int64" />
+    <Property Name="Passenger_Username" Type="String" MaxLength="30" FixedLength="false" Unicode="false" />
+    <Property Name="Passenger_Password" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+    <Property Name="Passenger_Nickname" Type="String" MaxLength="30" FixedLength="false" Unicode="false" />
+    <NavigationProperty Name="Flights" Relationship="Self.FK__Flight__Passenge__3E52440B" FromRole="Passenger" ToRole="Flight" />
+    <NavigationProperty Name="Tickets" Relationship="Self.FK__Ticket__Passenge__3B75D760" FromRole="Passenger" ToRole="Ticket" />
+  </EntityType>
+  <EntityType Name="Staff">
+    <Key>
+      <PropertyRef Name="Staff_Id" />
+    </Key>
+    <Property Name="Staff_Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="Staff_Position" Type="String" MaxLength="30" FixedLength="false" Unicode="false" />
+    <Property Name="Staff_Name" Type="String" MaxLength="30" FixedLength="false" Unicode="false" />
+    <Property Name="Staff_Phone_Number" Type="Int64" />
+    <Property Name="Staff_Username" Type="String" MaxLength="30" FixedLength="false" Unicode="false" />
+    <Property Name="Staff_Password" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+    <Property Name="Staff_Nickname" Type="String" MaxLength="30" FixedLength="false" Unicode="false" />
+  </EntityType>
+  <EntityType Name="Ticket">
+    <Key>
+      <PropertyRef Name="Ticket_Id" />
+    </Key>
+    <Property Name="Ticket_Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="Seat_Number" Type="Int32" />
+    <Property Name="Passenger_Name" Type="String" MaxLength="30" FixedLength="false" Unicode="false" />
+    <Property Name="Ticket_Status" Type="String" MaxLength="30" FixedLength="false" Unicode="false" />
+    <Property Name="Ticket_Price" Type="Int32" />
+    <Property Name="Passenger_Id" Type="Int32" />
+    <NavigationProperty Name="Passenger" Relationship="Self.FK__Ticket__Passenge__3B75D760" FromRole="Ticket" ToRole="Passenger" />
+  </EntityType>
+  <Association Name="FK__Flight__Airplane__3F466844">
+    <End Role="Airplane" Type="Self.Airplane" Multiplicity="0..1" />
+    <End Role="Flight" Type="Self.Flight" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Airplane">
+        <PropertyRef Name="Airplane_Id" />
+      </Principal>
+      <Dependent Role="Flight">
+        <PropertyRef Name="Airplane_Id" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK__Flight__Passenge__3E52440B">
+    <End Role="Passenger" Type="Self.Passenger" Multiplicity="0..1" />
+    <End Role="Flight" Type="Self.Flight" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Passenger">
+        <PropertyRef Name="Passenger_Id" />
+      </Principal>
+      <Dependent Role="Flight">
+        <PropertyRef Name="Passenger_Id" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK__Ticket__Passenge__3B75D760">
+    <End Role="Passenger" Type="Self.Passenger" Multiplicity="0..1" />
+    <End Role="Ticket" Type="Self.Ticket" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Passenger">
+        <PropertyRef Name="Passenger_Id" />
+      </Principal>
+      <Dependent Role="Ticket">
+        <PropertyRef Name="Passenger_Id" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <EntityContainer Name="AirportDBEntities" annotation:LazyLoadingEnabled="true">
+    <EntitySet Name="Airplanes" EntityType="Self.Airplane" />
+    <EntitySet Name="Flights" EntityType="Self.Flight" />
+    <EntitySet Name="Passengers" EntityType="Self.Passenger" />
+    <EntitySet Name="Staffs" EntityType="Self.Staff" />
+    <EntitySet Name="Tickets" EntityType="Self.Ticket" />
+    <AssociationSet Name="FK__Flight__Airplane__3F466844" Association="Self.FK__Flight__Airplane__3F466844">
+      <End Role="Airplane" EntitySet="Airplanes" />
+      <End Role="Flight" EntitySet="Flights" />
+    </AssociationSet>
+    <AssociationSet Name="FK__Flight__Passenge__3E52440B" Association="Self.FK__Flight__Passenge__3E52440B">
+      <End Role="Passenger" EntitySet="Passengers" />
+      <End Role="Flight" EntitySet="Flights" />
+    </AssociationSet>
+    <AssociationSet Name="FK__Ticket__Passenge__3B75D760" Association="Self.FK__Ticket__Passenge__3B75D760">
+      <End Role="Passenger" EntitySet="Passengers" />
+      <End Role="Ticket" EntitySet="Tickets" />
+    </AssociationSet>
+  </EntityContainer>
+</Schema>

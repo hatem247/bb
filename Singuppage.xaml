@@ -1,0 +1,51 @@
+﻿<Page x:Class="AirportMS.Singuppage"
+      xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+      xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+      xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+      xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+      xmlns:local="clr-namespace:AirportMS"
+      mc:Ignorable="d" 
+      d:DesignHeight="450" d:DesignWidth="370"
+      Title="Singuppage">
+
+    <Grid>
+        <Grid.Background>
+            <ImageBrush ImageSource="AirportBackground.jpg"/>
+        </Grid.Background>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="90"/>
+            <ColumnDefinition/>
+        </Grid.ColumnDefinitions>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="100"/>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="Auto"/>
+        </Grid.RowDefinitions>
+        <Label Grid.Row="0" Grid.Column="1" Foreground="#E52B50" FontSize="38" FontWeight="Bold" Margin="25,0,0,0" FontFamily="Trebuchet MS">Airport</Label>
+        <Label Grid.Row="0" Grid.Column="1" Foreground="#E52B50" FontSize="30" FontWeight="Bold" Margin="35,50,0,0" FontFamily="Trebuchet MS">Sign up</Label>
+        <Label Grid.Row="1" Grid.Column="0" Foreground="#E52B50">Name:</Label>
+        <TextBox Name="Nametxtbox" BorderBrush="#E52B50" Grid.Row="1" Grid.Column="1" Margin="0,3,100,3" Foreground="#E52B50" Background="Transparent"/>
+        <Label Grid.Row="2" Grid.Column="0" Foreground="#E52B50">Username:</Label>
+        <Label Grid.Row="3" Grid.Column="0" Foreground="#E52B50">Password:</Label>
+        <TextBox Name="Usernametxtbox" BorderBrush="#E52B50" Grid.Row="2" Grid.Column="1" Margin="0,3,100,3" Foreground="#E52B50" Background="Transparent"/>
+        <TextBox Name="Passwordtxtbox" BorderBrush="#E52B50" Grid.Row="3" Grid.Column="1" Margin="0,3,100,3" Foreground="#E52B50" Background="Transparent"/>
+        <Label Grid.Row="4" Grid.Column="0" Foreground="#E52B50">Passport Num:</Label>
+        <TextBox Name="PassportNumbertxtbox" BorderBrush="#E52B50" Grid.Row="4" Grid.Column="1" Margin="0,3,100,3" Foreground="#E52B50" Background="Transparent"/>
+        <Label Grid.Row="5" Grid.Column="0" Foreground="#E52B50">Age:</Label>
+        <Label Grid.Row="6" Grid.Column="0" Foreground="#E52B50">Gender:</Label>
+        <TextBox Name="Agetxtbox" BorderBrush="#E52B50" Grid.Row="5" Grid.Column="1" Margin="0,3,100,3" Foreground="#E52B50" Background="Transparent"/>
+        <TextBox Name="Gendertxtbox" BorderBrush="#E52B50" Grid.Row="6" Grid.Column="1" Margin="0,3,100,3" Foreground="#E52B50" Background="Transparent"/>
+        <Label Grid.Row="7" Grid.Column="0" Foreground="#E52B50">Phone Number:</Label>
+        <TextBox Name="PhoneNumbertxtbox" BorderBrush="#E52B50" Grid.Row="7" Grid.Column="1" Margin="0,3,100,3" Foreground="#E52B50" Background="Transparent"/>
+        <Label Grid.Row="8" Grid.Column="0" Foreground="#E52B50">Nickname:</Label>
+        <TextBox Name="Nicknametxtbox" BorderBrush="#E52B50" Grid.Row="8" Grid.Column="1" Margin="0,3,100,3" Foreground="#E52B50" Background="Transparent"/>
+        <Button Name="Signupbtn" BorderBrush="#E52B50" Grid.Column="1" Grid.Row="9" Margin="160,35,20,110" Foreground="#E52B50" Background="Transparent" Click="Signupbtn_Click">Sign up</Button>
+    </Grid>
+</Page>

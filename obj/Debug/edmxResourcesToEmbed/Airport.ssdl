@@ -1,0 +1,115 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Schema Namespace="AirportDBModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+  <EntityType Name="Airplane">
+    <Key>
+      <PropertyRef Name="Airplane_Id" />
+    </Key>
+    <Property Name="Airplane_Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="Airplane_Name" Type="varchar" MaxLength="30" />
+    <Property Name="Airplane_Capacity" Type="int" />
+    <Property Name="Airplane_Status" Type="varchar" MaxLength="30" />
+  </EntityType>
+  <EntityType Name="Flight">
+    <Key>
+      <PropertyRef Name="Flight_Number" />
+    </Key>
+    <Property Name="Flight_Number" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="Flight_Status" Type="varchar" MaxLength="30" />
+    <Property Name="Flight_Departure_Time" Type="time" Precision="7" />
+    <Property Name="Flight_Arrival_Time" Type="time" Precision="7" />
+    <Property Name="Passenger_Id" Type="int" />
+    <Property Name="Airplane_Id" Type="int" />
+  </EntityType>
+  <EntityType Name="Passenger">
+    <Key>
+      <PropertyRef Name="Passenger_Id" />
+    </Key>
+    <Property Name="Passenger_Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="Passenger_Name" Type="varchar" MaxLength="30" />
+    <Property Name="Passenger_Age" Type="int" />
+    <Property Name="Passenger_Passport" Type="varchar" MaxLength="30" />
+    <Property Name="Passenger_Gender" Type="varchar" MaxLength="30" />
+    <Property Name="Passenger_Phone_Number" Type="bigint" />
+    <Property Name="Passenger_Username" Type="varchar" MaxLength="30" />
+    <Property Name="Passenger_Password" Type="varchar" MaxLength="100" />
+    <Property Name="Passenger_Nickname" Type="varchar" MaxLength="30" />
+  </EntityType>
+  <EntityType Name="Staff">
+    <Key>
+      <PropertyRef Name="Staff_Id" />
+    </Key>
+    <Property Name="Staff_Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="Staff_Position" Type="varchar" MaxLength="30" />
+    <Property Name="Staff_Name" Type="varchar" MaxLength="30" />
+    <Property Name="Staff_Phone_Number" Type="bigint" />
+    <Property Name="Staff_Username" Type="varchar" MaxLength="30" />
+    <Property Name="Staff_Password" Type="varchar" MaxLength="100" />
+    <Property Name="Staff_Nickname" Type="varchar" MaxLength="30" />
+  </EntityType>
+  <EntityType Name="Ticket">
+    <Key>
+      <PropertyRef Name="Ticket_Id" />
+    </Key>
+    <Property Name="Ticket_Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="Seat_Number" Type="int" />
+    <Property Name="Passenger_Name" Type="varchar" MaxLength="30" />
+    <Property Name="Ticket_Status" Type="varchar" MaxLength="30" />
+    <Property Name="Ticket_Price" Type="int" />
+    <Property Name="Passenger_Id" Type="int" />
+  </EntityType>
+  <Association Name="FK__Flight__Airplane__3F466844">
+    <End Role="Airplane" Type="Self.Airplane" Multiplicity="0..1" />
+    <End Role="Flight" Type="Self.Flight" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Airplane">
+        <PropertyRef Name="Airplane_Id" />
+      </Principal>
+      <Dependent Role="Flight">
+        <PropertyRef Name="Airplane_Id" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK__Flight__Passenge__3E52440B">
+    <End Role="Passenger" Type="Self.Passenger" Multiplicity="0..1" />
+    <End Role="Flight" Type="Self.Flight" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Passenger">
+        <PropertyRef Name="Passenger_Id" />
+      </Principal>
+      <Dependent Role="Flight">
+        <PropertyRef Name="Passenger_Id" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK__Ticket__Passenge__3B75D760">
+    <End Role="Passenger" Type="Self.Passenger" Multiplicity="0..1" />
+    <End Role="Ticket" Type="Self.Ticket" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Passenger">
+        <PropertyRef Name="Passenger_Id" />
+      </Principal>
+      <Dependent Role="Ticket">
+        <PropertyRef Name="Passenger_Id" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <EntityContainer Name="AirportDBModelStoreContainer">
+    <EntitySet Name="Airplane" EntityType="Self.Airplane" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="Flight" EntityType="Self.Flight" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="Passenger" EntityType="Self.Passenger" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="Staff" EntityType="Self.Staff" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="Ticket" EntityType="Self.Ticket" Schema="dbo" store:Type="Tables" />
+    <AssociationSet Name="FK__Flight__Airplane__3F466844" Association="Self.FK__Flight__Airplane__3F466844">
+      <End Role="Airplane" EntitySet="Airplane" />
+      <End Role="Flight" EntitySet="Flight" />
+    </AssociationSet>
+    <AssociationSet Name="FK__Flight__Passenge__3E52440B" Association="Self.FK__Flight__Passenge__3E52440B">
+      <End Role="Passenger" EntitySet="Passenger" />
+      <End Role="Flight" EntitySet="Flight" />
+    </AssociationSet>
+    <AssociationSet Name="FK__Ticket__Passenge__3B75D760" Association="Self.FK__Ticket__Passenge__3B75D760">
+      <End Role="Passenger" EntitySet="Passenger" />
+      <End Role="Ticket" EntitySet="Ticket" />
+    </AssociationSet>
+  </EntityContainer>
+</Schema>
